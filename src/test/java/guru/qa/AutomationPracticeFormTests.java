@@ -4,9 +4,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
-import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -32,8 +29,7 @@ public class AutomationPracticeFormTests {
         $("[class*='react-datepicker__day--020']").click();
         $("#subjectsInput").setValue("Bio").pressEnter();
         $(byText("Music")).click();
-        File testFile = new File("src/test/resources/1.png");
-        $("#uploadPicture").uploadFile(testFile);
+        $("#uploadPicture").uploadFromClasspath("1.png");
         $("#currentAddress").setValue("Russia");
         $("#state").scrollTo().click();
         $(byText("Haryana")).click();
@@ -43,32 +39,18 @@ public class AutomationPracticeFormTests {
 
         $(".modal-content").shouldBe(visible);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $$x("//*[@class='modal-body']//td[1]").shouldHave(
-                texts(
-                        "Student Name",
-                        "Student Email",
-                        "Gender",
-                        "Mobile",
-                        "Date of Birth",
-                        "Subjects",
-                        "Hobbies",
-                        "Picture",
-                        "Address",
-                        "State and City"
-                ));
-        $$x("//*[@class='modal-body']//td[2]").shouldHave(
-                texts(
-                        "Иван Иванов",
-                        "test@test.qa",
-                        "Male",
-                        "1234567890",
-                        "20 August,1998",
-                        "Biology",
-                        "Music",
-                        "1.png",
-                        "Russia",
-                        "Haryana Karnal"
-                ));
-        $x("//button[text()='Close']").shouldBe(visible).shouldHave(text("Close"));
+        $(".modal-content").shouldHave(
+                text("Student Name"), text("Иван Иванов"),
+                text("Student Email"), text("test@test.qa"),
+                text("Gender"), text("Male"),
+                text("Mobile"), text("1234567890"),
+                text("Date of Birth"), text("20 August,1998"),
+                text("Subjects"), text("Biology"),
+                text("Hobbies"), text("Music"),
+                text("Picture"), text("1.png"),
+                text("Address"), text("Russia"),
+                text("State and City"), text("Haryana Karnal")
+        );
+        $(byText("Close")).shouldBe(visible);
     }
 }
