@@ -5,15 +5,15 @@ public class Main {
         Address gislason57 = new Address("New Celine", "Gislason Crossroad Suite", 57);
         Address mattieport4 = new Address("Giannitown", "Brian Track Mattieport", 4);
 
-        Person TellyWilliamson = new Person("Miss Telly Williamson Sr.", gislason57, 42);
-        Person ForrestHills = new Person("Dr. Forrest Hills", gislason57, 21);
-        Person EfrenKlein = new Person("Efren Klein", mattieport4, 10);
-        TellyWilliamson.getFullAddress();
-        ForrestHills.getFullAddress();
-        EfrenKlein.getFullAddress();
+        Person tellyWilliamson = new Person("Miss Telly Williamson Sr.", gislason57, 42);
+        Person forrestHills = new Person("Dr. Forrest Hills", gislason57, 21);
+        Person efrenKlein = new Person("Efren Klein", mattieport4, 10);
+        tellyWilliamson.getFullAddress();
+        forrestHills.getFullAddress();
+        efrenKlein.getFullAddress();
 
-        ForrestHills.setAddress(mattieport4);
-        ForrestHills.setApartment(20);
-        ForrestHills.getFullAddress();
+        forrestHills.setAddress(mattieport4);
+        forrestHills.setApartment(20);
+        forrestHills.getFullAddress();
     }
 }
